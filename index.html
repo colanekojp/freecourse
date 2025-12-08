@@ -2,82 +2,554 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>加入王可樂日語｜免費體驗影片</title>
+  <title>王可樂日語｜免費體驗課申請</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #faf7f2;
-      color: #333;
-    }
-    .container {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "微軟正黑體", sans-serif;
       max-width: 640px;
       margin: 0 auto;
-      padding: 48px 24px 64px;
-      text-align: center;
+      padding: 24px 16px 40px;
+      line-height: 1.6;
+      background: #ffffff;
     }
+
     h1 {
-      font-size: 28px;
-      margin-bottom: 16px;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 700;
+      color: #333;
     }
-    p {
-      line-height: 1.7;
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    .section-title {
-      font-weight: 600;
-      margin-top: 24px;
-      margin-bottom: 8px;
-      font-size: 18px;
-    }
-    .step-list {
-      text-align: left;
-      display: inline-block;
-      margin-top: 8px;
-    }
-    .step-list li {
-      margin: 4px 0;
-      line-height: 1.7;
-    }
-    .btn-wrapper {
-      margin-top: 32px;
-    }
-    .btn-primary {
-      display: inline-block;
-      padding: 14px 32px;
-      border-radius: 999px;
-      background-color: #1c8c3a;
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    .btn-primary:hover {
-      opacity: 0.9;
-    }
-    .note {
-      margin-top: 24px;
-      font-size: 14px;
+
+    p.desc {
       color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    form {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+    }
+
+    .field {
+      margin-bottom: 24px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .required {
+      color: #e11d48;
+      margin-left: 4px;
+      font-size: 0.9em;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0C9F63;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 1rem;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .radio-option:hover {
+      border-color: #0C9F63;
+      background: #f0fdf4;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-option span {
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .radio-option.checked span {
+      color: #0C9F63;
+      font-weight: 600;
+    }
+
+    .radio-option.checked {
+      border-color: #0C9F63;
+      background: #f0fdf4;
+    }
+
+    .sub-input {
+      margin-top: 12px;
+      margin-left: 36px;
+    }
+
+    .sub-input input {
+      padding: 12px 14px;
+    }
+
+    .error {
+      color: #e11d48;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .hint {
+      font-size: 0.88rem;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #0C9F63;
+      color: white;
+      margin-top: 20px;
+      transition: background 0.2s;
+    }
+
+    button[type="submit"]:hover:not([disabled]) {
+      background: #0a8652;
+    }
+
+    button[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    .message.success {
+      color: #16a34a;
+    }
+
+    .message.error {
+      color: #b91c1c;
+    }
+
+    .success-content {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+      margin-top: 20px;
+    }
+
+    .success-content p {
+      margin: 12px 0;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .success-content .highlight {
+      color: #0C9F63;
+      font-weight: 600;
+    }
+
+    .line-button {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      margin-top: 20px;
+      background: #0C9F63;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .line-button:hover {
+      background: #0a8652;
+    }
+
+    .instruction-image {
+      width: 400px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 24px auto 0;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>歡迎加入王可樂日語</h1>
-    <p>點擊下方按鈕，加入王可樂日語官方 LINE<br>在聊天室輸入通關密語：<strong>「我要免費體驗」</strong>即可獲得免費體驗影片連結</p>
+  <h1>歡迎加入王可樂日語</h1>
+  <p class="desc">
+    謝謝你對王可樂日語有興趣 💛<br />
+    請先填寫以下資訊，我們會依照你目前的程度與需求，協助安排合適的體驗課程。
+  </p>
 
-    <div class="btn-wrapper">
-      <a class="btn-primary" href="https://link.colajp.com/4XTZZ" target="_blank" rel="noopener noreferrer">
-        加官方Line輸入我要免費體驗
-      </a>
+  <form id="freecourse-form" novalidate>
+    <!-- 姓名 -->
+    <div class="field">
+      <label for="name">姓名<span class="required">*</span></label>
+      <input id="name" name="name" type="text" />
+      <div class="error" data-error-for="name"></div>
     </div>
 
-    
-  </div>
+    <!-- 連絡電話 -->
+    <div class="field">
+      <label for="phone">連絡電話<span class="required">*</span></label>
+      <input id="phone" name="phone" type="tel" />
+      <div class="error" data-error-for="phone"></div>
+      <div class="hint">請留下平常方便聯絡的手機或市話。</div>
+    </div>
+
+    <!-- 聯絡信箱 -->
+    <div class="field">
+      <label for="email">聯絡信箱<span class="required">*</span></label>
+      <input id="email" name="email" type="email" />
+      <div class="error" data-error-for="email"></div>
+    </div>
+
+    <!-- 學習日文的目的 -->
+    <div class="field">
+      <label>學習日文的目的<span class="required">*</span></label>
+      <div class="radio-group" id="purpose-group">
+        <label class="radio-option">
+          <input type="radio" name="purpose" value="觀光、旅遊" />
+          <span>觀光、旅遊</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="purpose" value="喜歡日本文化(例如：追星、飲食、歷史)" />
+          <span>喜歡日本文化（例如：追星、飲食、歷史）</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="purpose" value="工作" />
+          <span>工作</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="purpose" value="求學" />
+          <span>求學</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="purpose" value="其他" data-has-other="true" />
+          <span>其他</span>
+        </label>
+      </div>
+      <div class="sub-input" id="purpose-other-wrapper" style="display:none;">
+        <input type="text" id="purpose-other" placeholder="請簡單說明你的學習目的" />
+      </div>
+      <div class="error" data-error-for="purpose"></div>
+    </div>
+
+    <!-- 想要體驗的課程級數 -->
+    <div class="field">
+      <label>想要體驗的課程級數<span class="required">*</span></label>
+      <div class="radio-group" id="level-group">
+        <label class="radio-option">
+          <input type="radio" name="level" value="五十音" />
+          <span>五十音</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="level" value="初級-N5" />
+          <span>初級-N5</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="level" value="初級-N4" />
+          <span>初級-N4</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="level" value="中級-N3" />
+          <span>中級-N3</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="level" value="中高級-N2" />
+          <span>中高級-N2</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="level" value="高級-N1" />
+          <span>高級-N1</span>
+        </label>
+      </div>
+      <div class="error" data-error-for="level"></div>
+    </div>
+
+    <!-- 從哪邊得知王可樂日語 -->
+    <div class="field">
+      <label>從哪邊得知王可樂日語<span class="required">*</span></label>
+      <div class="radio-group" id="source-group">
+        <label class="radio-option">
+          <input type="radio" name="source" value="臉書粉專" />
+          <span>臉書粉專</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="source" value="官方IG" />
+          <span>官方IG</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="source" value="朋友介紹" />
+          <span>朋友介紹</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="source" value="上網搜尋到的" />
+          <span>上網搜尋到的</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="source" value="其他" data-has-other="true" />
+          <span>其他</span>
+        </label>
+      </div>
+      <div class="sub-input" id="source-other-wrapper" style="display:none;">
+        <input type="text" id="source-other" placeholder="可以跟我們說說是在哪裡看到的嗎？" />
+      </div>
+      <div class="error" data-error-for="source"></div>
+    </div>
+
+    <button type="submit" id="submit-btn">送出體驗申請</button>
+    <div id="form-message" class="message"></div>
+  </form>
+
+  <script>
+    const WEBHOOK_URL = "https://colanekojp.zeabur.app/webhook/freecourse"; // ← 改成你的 n8n Production URL
+    const FORM_SECRET = "colajp-freecourse-20251231-key"; // 若 n8n 沒驗證可以先不管
+    const form = document.getElementById("freecourse-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const formMessage = document.getElementById("form-message");
+
+    const purposeGroup = document.getElementById("purpose-group");
+    const purposeOtherWrapper = document.getElementById("purpose-other-wrapper");
+    const purposeOtherInput = document.getElementById("purpose-other");
+
+    const sourceGroup = document.getElementById("source-group");
+    const sourceOtherWrapper = document.getElementById("source-other-wrapper");
+    const sourceOtherInput = document.getElementById("source-other");
+
+    // 顯示 / 隱藏「其他」輸入框
+    function setupOtherToggle(groupEl, otherWrapper, inputName) {
+      groupEl.addEventListener("change", (e) => {
+        const target = e.target;
+        if (target.name !== inputName) return;
+        const hasOther = target.dataset.hasOther === "true";
+        otherWrapper.style.display = hasOther ? "block" : "none";
+        if (!hasOther) {
+          const input =
+            inputName === "purpose"
+              ? purposeOtherInput
+              : sourceOtherInput;
+          input.value = "";
+        }
+      });
+    }
+
+    setupOtherToggle(purposeGroup, purposeOtherWrapper, "purpose");
+    setupOtherToggle(sourceGroup, sourceOtherWrapper, "source");
+
+    // 處理 radio button 選中狀態樣式
+    function updateRadioStyles(groupEl) {
+      const options = groupEl.querySelectorAll(".radio-option");
+      options.forEach(option => {
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio && radio.checked) {
+          option.classList.add("checked");
+        } else {
+          option.classList.remove("checked");
+        }
+      });
+    }
+
+    // 為所有 radio group 添加事件監聽
+    [purposeGroup, sourceGroup, document.getElementById("level-group")].forEach(group => {
+      if (group) {
+        group.addEventListener("change", (e) => {
+          if (e.target.type === "radio") {
+            updateRadioStyles(group);
+          }
+        });
+        // 初始化狀態
+        updateRadioStyles(group);
+      }
+    });
+
+    function setError(field, message) {
+      const el = document.querySelector(`.error[data-error-for="${field}"]`);
+      if (el) el.textContent = message || "";
+    }
+
+    function clearErrors() {
+      document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+    }
+
+    function validateForm() {
+      clearErrors();
+      let valid = true;
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!name) {
+        setError("name", "請填寫姓名");
+        valid = false;
+      }
+
+      if (!phone) {
+        setError("phone", "請填寫聯絡電話");
+        valid = false;
+      }
+
+      if (!email) {
+        setError("email", "請填寫聯絡信箱");
+        valid = false;
+      } else {
+        // 簡單 email 驗證
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setError("email", "請填寫正確的 email 格式");
+          valid = false;
+        }
+      }
+
+      const purposeSelected = document.querySelector('input[name="purpose"]:checked');
+      if (!purposeSelected) {
+        setError("purpose", "請選擇一個學習目的");
+        valid = false;
+      }
+
+      const levelSelected = document.querySelector('input[name="level"]:checked');
+      if (!levelSelected) {
+        setError("level", "請選擇想體驗的課程級數");
+        valid = false;
+      }
+
+      const sourceSelected = document.querySelector('input[name="source"]:checked');
+      if (!sourceSelected) {
+        setError("source", "請選擇你是從哪裡得知王可樂日語");
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      formMessage.textContent = "";
+      formMessage.className = "message";
+
+      if (!validateForm()) return;
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      const purposeSelected = document.querySelector('input[name="purpose"]:checked');
+      const levelSelected = document.querySelector('input[name="level"]:checked');
+      const sourceSelected = document.querySelector('input[name="source"]:checked');
+
+      const payload = {
+        name,
+        phone,
+        email,
+        purpose: purposeSelected ? purposeSelected.value : "",
+        purposeOther: purposeOtherInput.value.trim(),
+        level: levelSelected ? levelSelected.value : "",
+        source: sourceSelected ? sourceSelected.value : "",
+        sourceOther: sourceOtherInput.value.trim()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "送出中…";
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-form-secret": FORM_SECRET
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        form.reset();
+        purposeOtherWrapper.style.display = "none";
+        sourceOtherWrapper.style.display = "none";
+
+        form.style.display = "none";
+        document.querySelector("h1").style.display = "none";
+        document.querySelector("p.desc").style.display = "none";
+        
+        const successContent = document.createElement("div");
+        successContent.className = "success-content";
+        successContent.innerHTML = `
+          <p>點擊下方按鈕，加入王可樂日語官方 LINE</p>
+          <p>在聊天室輸入通關密語：<span class="highlight">「我要免費體驗」</span>即可獲得免費體驗影片連結</p>
+          <a href="https://link.colajp.com/4XTZZ" class="line-button" target="_blank">加官方Line輸入我要免費體驗</a>
+          <img src="image/line_instruction.PNG" alt="LINE 操作示意圖" class="instruction-image" />
+        `;
+        form.parentNode.insertBefore(successContent, form.nextSibling);
+      } catch (err) {
+        console.error(err);
+        formMessage.textContent = "送出失敗，請稍後再試一次，或截圖回報給我們。";
+        formMessage.classList.add("error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "送出體驗申請";
+      }
+    });
+  </script>
 </body>
 </html>
